@@ -1,5 +1,6 @@
 # ---------- build stage: produce /dist ----------
-FROM node:22-alpine AS build
+# Base images pinned to digests (supply-chain integrity); bump via Dependabot.
+FROM node:22-alpine@sha256:968df39aedcea65eeb078fb336ed7191baf48f972b4479711397108be0966920 AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 # devDeps (esbuild, html-minifier-terser) are needed to build; the optional
@@ -12,7 +13,14 @@ ENV SITE_URL=$SITE_URL
 RUN node build.mjs
 
 # ---------- serve stage: Caddy serving the static /dist ----------
-FROM caddy:2-alpine
+FROM caddy:2-alpine@sha256:77c07d5ebfa5be9fd6c820d2094ae662c9e7eeb9bf98346b7f639900263ee2a2
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY --from=build /app/dist /srv
-# caddy:2 image's default command runs /etc/caddy/Caddyfile and binds to $PORT.
+# Run as a non-root user with writable Caddy state dirs (defense in depth).
+ENV XDG_DATA_HOME=/data XDG_CONFIG_HOME=/config
+RUN addgroup -g 10001 app \
+ && adduser -u 10001 -G app -S -H app \
+ && mkdir -p /data /config \
+ && chown -R app:app /data /config /srv
+USER app
+# caddy:2 default entrypoint runs /etc/caddy/Caddyfile and binds to $PORT.

@@ -69,10 +69,21 @@ you'll need to reproduce the headers/caching from `Caddyfile` yourself.
 
 ## What's hardened
 
-- **Security:** CSP (tight `script-src`, no `unsafe-inline` for scripts), HSTS,
-  `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`,
-  `Cross-Origin-Opener-Policy`, `X-Frame-Options`, `Server` header removed — all
-  set in `Caddyfile`. No inline scripts/handlers; Calendly is origin-restricted.
+- **Security headers (`Caddyfile`):** CSP (tight `script-src`, no `unsafe-inline`
+  for scripts), HSTS (preload), `X-Content-Type-Options`, `Referrer-Policy`,
+  comprehensive `Permissions-Policy` (denies camera/mic/geo/payment/usb/… ),
+  `Cross-Origin-Opener-Policy`, `Cross-Origin-Resource-Policy`, `X-Frame-Options`,
+  `X-Permitted-Cross-Domain-Policies`, `Server` header removed. No inline
+  scripts/handlers/styles; Calendly is origin-restricted by CSP.
+- **Supply chain / container:** Docker base images pinned to digests; the serve
+  stage runs as a **non-root** user; `npm ci` from a committed lockfile;
+  Dependabot (`.github/dependabot.yml`) watches npm + Docker + Actions.
+- **Known trade-off:** the in-page Calendly popup means `style-src 'unsafe-inline'`
+  and the Calendly origins must stay, and Trusted Types / COEP can't be enforced
+  (Calendly's `widget.js` isn't compatible). Switching Calendly to open in a new
+  tab would unlock a stricter CSP — see `app.js`.
+- **Enable in GitHub (Settings → Code security & analysis):** Dependabot alerts,
+  Secret scanning, and Push protection.
 - **Performance:** self-hosted fonts (no third-party CDN), Calendly loaded only
   on first interaction, minified + content-hashed CSS/JS with immutable caching,
   zstd/gzip compression, preloaded above-the-fold fonts.

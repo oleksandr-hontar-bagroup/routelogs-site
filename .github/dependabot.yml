@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # JS build tooling (esbuild, html-minifier-terser, sharp, png-to-ico)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  # Dockerfile base images (node, caddy) — keeps the pinned digests current
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  # Any GitHub Actions added later
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

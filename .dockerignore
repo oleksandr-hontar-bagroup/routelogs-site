@@ -5,3 +5,8 @@ dist
 *.log
 .DS_Store
 /root/.claude
+.env
+.env.*
+*.pem
+*.key
+*.local
