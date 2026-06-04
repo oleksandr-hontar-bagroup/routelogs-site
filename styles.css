@@ -539,7 +539,7 @@ img, svg { display: block; max-width: 100%; }
 .cold-feat .ic svg { width: 20px; height: 20px; }
 .cold-feat h4 { font-size: 16px; margin-bottom: 3px; }
 .cold-feat p { font-size: 14px; color: #9fb6cf; }
-.cold-feat .soon { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #0a2b4d; background: var(--green-400); padding: 3px 7px; border-radius: 5px; margin-left: 8px; vertical-align: middle; }
+.cold-feat .soon { display: inline-block; white-space: nowrap; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #0a2b4d; background: var(--green-400); padding: 3px 7px; border-radius: 5px; margin-left: 8px; vertical-align: middle; }
 
 /* temperature visual */
 .temp-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r-xl); padding: 26px; backdrop-filter: blur(2px); }
