@@ -29,6 +29,7 @@ const HTML_PAGES = ["index.html", "privacy.html", "terms.html", "404.html"];
 const STATIC_AS_IS = [
   "favicon.svg", "favicon.ico", "apple-touch-icon.png",
   "icon-192.png", "icon-512.png", "og-image.png", "site.webmanifest",
+  "humans.txt",
 ];
 const STATIC_TOKEN = ["robots.txt", "sitemap.xml", ".well-known/security.txt"];
 
