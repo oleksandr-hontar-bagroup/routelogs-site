@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RouteLogs — Automated medical specimen logistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- Calendly scheduling widget -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#top" class="brand" aria-label="RouteLogs home">
+      <span class="logomark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6" cy="6" r="2.2"></circle>
+          <circle cx="18" cy="18" r="2.2"></circle>
+          <path d="M8 6h6a3 3 0 0 1 0 6H10a3 3 0 0 0 0 6h6"></path>
+        </svg>
+      </span>
+      <span><b>Route</b><span class="logs">Logs</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#app">Courier app</a>
+      <a href="#security">Security</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#" class="btn btn-secondary btn-sm">Log in</a>
+      <a href="#demo" class="btn btn-primary btn-sm">Request a Demo</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="hero-badge reveal"><span class="dot"></span> Pre-launch · Medical specimen logistics</span>
+      <h1 class="h-display reveal d1">Automate the journey of every<span class="accent"> medical specimen</span>, clinic to lab.</h1>
+      <p class="lead reveal d2">RouteLogs orchestrates the entire chain — pickup scheduling, optimized courier routes, transfer-hub consolidation, and real-time visibility — so labs and logistics teams keep full control from collection to processing.</p>
+      <div class="hero-cta reveal d3">
+        <a href="#demo" class="btn btn-primary btn-lg">Request a Demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a href="#" class="btn btn-secondary btn-lg">Log in</a>
+      </div>
+      <div class="hero-trust reveal d4">
+        <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Chain-of-custody by design</div>
+        <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Cold-chain aware</div>
+        <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Real-time client portal</div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal d2">
+      <div class="map-card">
+        <div class="map-top">
+          <span class="ttl"><span class="pin"></span> Live route · North district</span>
+          <span class="live"><span class="blip"></span> LIVE</span>
+        </div>
+        <div class="map-body" id="heroMap"></div>
+      </div>
+      <div class="hero-float f1">
+        <span class="ic green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+        <div>14 collected<small>ON SCHEDULE</small></div>
+      </div>
+      <div class="hero-float f2">
+        <span class="ic navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
+        <div>4.2°C in transit<small>COLD CHAIN OK</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROOF STRIP ============ -->
+<div class="proofstrip">
+  <div class="container">
+    <span class="label">Built for the full chain</span>
+    <span class="proof-logo"><span class="sq"></span> Clinics</span>
+    <span class="proof-logo"><span class="sq"></span> Couriers</span>
+    <span class="proof-logo"><span class="sq"></span> Transfer hubs</span>
+    <span class="proof-logo"><span class="sq"></span> Laboratories</span>
+  </div>
+</div>
+
+<!-- ============ PROBLEM ============ -->
+<section class="section section--alt" id="problem">
+  <div class="container split wide-left">
+    <div class="reveal">
+      <p class="eyebrow">The problem</p>
+      <h2 class="h-section">Coordinating sample collection by hand is fragile, slow, and invisible.</h2>
+      <p class="lead" style="margin-top:18px">Spreadsheets, phone calls, and paper manifests can't keep up with dozens of clinics, multiple couriers, and time-sensitive samples. When something slips, nobody finds out until it's too late.</p>
+      <div class="pain-list">
+        <div class="pain-item">
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+          <p><b>Routes planned by guesswork</b><span>Couriers double back, miss pickups, and burn hours that the schedule can't absorb.</span></p>
+        </div>
+        <div class="pain-item">
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+          <p><b>No visibility for the client</b><span>Labs and clinics can't see what was collected, what wasn't, or where a sample is right now.</span></p>
+        </div>
+        <div class="pain-item">
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+          <p><b>Sample integrity left to chance</b><span>Cooling and temperature go unmonitored, putting specimen quality — and compliance — at risk.</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="stat-stack reveal d2">
+      <div class="stat-card">
+        <div class="num">Hours <span class="accent">→ minutes</span></div>
+        <p class="cap">Route planning that used to take a dispatcher all morning is generated automatically.</p>
+      </div>
+      <div class="stat-card">
+        <div class="num"><span class="accent">100%</span> visible</div>
+        <p class="cap">Every checkpoint, pickup, and exception — tracked and shared in real time across the chain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION ============ -->
+<section class="section solution" id="solution">
+  <div class="container">
+    <p class="eyebrow center reveal" style="justify-content:center">The solution</p>
+    <h2 class="h-section reveal d1">One platform that runs specimen logistics end to end —<span class="muted"> scheduling, routing, hubs, and transparency in a single system of record.</span></h2>
+    <div class="solution-points">
+      <div class="solution-point reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"></path></svg></div>
+        <h3>Plan</h3>
+        <p>Schedule pickups with each clinic and let RouteLogs build the optimal collection route automatically.</p>
+      </div>
+      <div class="solution-point reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.4-2.7A1 1 0 0 1 3 16.4V4.6a1 1 0 0 1 1.4-.9L9 6m0 14 6-3m-6 3V6m6 11 5.4 2.7A1 1 0 0 0 21 18.8V7a1 1 0 0 0-.6-.9L15 4m0 13V4m0 0L9 6"></path></svg></div>
+        <h3>Move</h3>
+        <p>Couriers follow optimized routes; transfer hubs consolidate samples from multiple runs and forward them on.</p>
+      </div>
+      <div class="solution-point reveal d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+        <h3>See</h3>
+        <p>Clients log into their own dashboard for real-time checkpoint status, exceptions, and cold-chain conditions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section section--alt" id="how">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">How it works</p>
+      <h2 class="h-section">From clinic to lab in four coordinated steps</h2>
+      <p class="lead" style="margin-top:16px">Follow a sample through the chain. Select a step to trace it on the live route map.</p>
+    </div>
+
+    <div class="how-grid">
+      <div class="steps" id="steps" role="tablist" aria-label="How it works steps">
+        <button class="step" role="tab" aria-selected="true" data-step="1">
+          <span class="idx">01</span>
+          <span><h3>Clinics prepare samples</h3><p>Clinics across the territory ready blood, urine, and other specimens for pickup on an agreed schedule.</p></span>
+        </button>
+        <button class="step" role="tab" aria-selected="false" data-step="2">
+          <span class="idx">02</span>
+          <span><h3>A courier runs the optimized route</h3><p>RouteLogs generates the most efficient route so the courier collects from every point, in order.</p></span>
+        </button>
+        <button class="step" role="tab" aria-selected="false" data-step="3">
+          <span class="idx">03</span>
+          <span><h3>Delivery to hub or lab</h3><p>Samples are dropped at a transfer hub or taken directly to the laboratory for processing.</p></span>
+        </button>
+        <button class="step" role="tab" aria-selected="false" data-step="4">
+          <span class="idx">04</span>
+          <span><h3>Hubs consolidate &amp; forward</h3><p>At transfer hubs, samples from multiple couriers and dispatchers are consolidated and forwarded onward.</p></span>
+        </button>
+      </div>
+
+      <div class="map-panel">
+        <div class="map-head">
+          <span class="tag">Route schematic</span>
+          <span class="legend">
+            <span><i style="background:#34c281"></i> Clinic</span>
+            <span><i style="background:#2a6299"></i> Hub</span>
+            <span><i style="background:#fff"></i> Lab</span>
+          </span>
+        </div>
+        <div class="routemap" id="routemap"></div>
+        <div class="map-caption">
+          <div class="lbl" id="capLbl">Step 01 · Collection</div>
+          <p id="capTxt">Clinics across the territory ready samples for pickup on an agreed schedule.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPABILITIES ============ -->
+<section class="section" id="capabilities">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">Key capabilities</p>
+      <h2 class="h-section">Everything the chain needs, in one platform</h2>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"></path><path d="M9 4v14M15 6v14"></path></svg></div>
+        <h3>Route building &amp; optimization</h3>
+        <p>Generate the most efficient courier routes automatically, balancing schedules, distance, and pickup windows.</p>
+      </div>
+      <div class="cap-card reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18M8 2v4M16 2v4M8 14h3"></path></svg></div>
+        <h3>Pickup scheduling</h3>
+        <p>Coordinate collection times with every clinic so couriers arrive exactly when samples are ready.</p>
+      </div>
+      <div class="cap-card reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"></path><path d="M3 13h18M9 21v-5h6v5"></path></svg></div>
+        <h3>Transfer hub management</h3>
+        <p>Consolidate samples from multiple couriers and dispatchers at hubs, then forward them onward without losing track.</p>
+      </div>
+      <div class="cap-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg></div>
+        <h3>Client portal &amp; live status</h3>
+        <p>Customers log into their own dashboard to see what was picked up, what wasn't, and where problems occurred — in real time.</p>
+      </div>
+      <div class="cap-card reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+        <h3>Transparency &amp; control</h3>
+        <p>A single source of truth across the whole chain — from collection at the clinic to arrival at the lab.</p>
+      </div>
+      <div class="cap-card reveal d2">
+        <span class="tagchip">Planned</span>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path><path d="M12 10v6"></path></svg></div>
+        <h3>Cold-chain monitoring</h3>
+        <p>Track cooling-container availability and temperature along the route, with sensor integration on the roadmap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLD CHAIN ============ -->
+<section class="section coldchain" id="coldchain">
+  <div class="container split">
+    <div class="reveal">
+      <p class="eyebrow">Sample integrity</p>
+      <h2 class="h-section">Protect specimen quality across the entire cold chain.</h2>
+      <p class="lead" style="margin-top:18px">A sample is only as good as the conditions it travels in. RouteLogs treats preservation as a first-class part of logistics — not an afterthought.</p>
+      <div class="cold-feats">
+        <div class="cold-feat">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M12 7l3-3M12 7 9 4M12 17l3 3M12 17l-3 3M4 12h16M7 12 4 9M7 12l-3 3M17 12l3-3M17 12l3 3"></path></svg></span>
+          <div><h4>Cooling-container availability</h4><p>Know which routes and runs have the cooling capacity each sample type requires, before dispatch.</p></div>
+        </div>
+        <div class="cold-feat">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg></span>
+          <div><h4>Temperature control along the route</h4><p>Record and monitor preservation conditions at each leg of the journey from clinic to lab.</p></div>
+        </div>
+        <div class="cold-feat">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a7 7 0 0 1 14 0M8.5 12.5a3.5 3.5 0 0 1 7 0M12 12.5v.01"></path><circle cx="12" cy="19" r="1.5"></circle></svg></span>
+          <div><h4>Temperature-sensor integration<span class="soon">On the roadmap</span></h4><p>Direct sensor feeds will stream live readings into RouteLogs for automatic, continuous cold-chain assurance.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal d2">
+      <div class="temp-card">
+        <div class="th">
+          <div class="now"><b id="tempNow">4.2</b><span>°C · in range</span></div>
+          <span class="temp-badge"><span class="blip"></span> Cold chain OK</span>
+        </div>
+        <div class="temp-chart">
+          <svg viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+            <rect class="temp-band" x="0" y="34" width="320" height="44"></rect>
+            <line x1="0" y1="34" x2="320" y2="34" stroke="rgba(52,194,129,.4)" stroke-dasharray="3 4" stroke-width="1"></line>
+            <line x1="0" y1="78" x2="320" y2="78" stroke="rgba(52,194,129,.4)" stroke-dasharray="3 4" stroke-width="1"></line>
+            <path id="tempLine" d="" fill="none" stroke="#34c281" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle id="tempDot" r="4" fill="#fff" stroke="#34c281" stroke-width="2.5"></circle>
+          </svg>
+        </div>
+        <div class="temp-meta">
+          <span>00:00</span>
+          <span class="ok">Target 2°C – 8°C</span>
+          <span>now</span>
+        </div>
+      </div>
+      <div class="placeholder dark" style="margin-top:20px;min-height:120px">
+        <div class="ph-inner">
+          <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="m3 16 5-5 4 4 3-3 6 6"></path><circle cx="8.5" cy="8.5" r="1.5"></circle></svg></div>
+          <div class="ph-label">Cold-chain visual</div>
+          <div class="ph-sub">[ container / cooling photo — to be added ]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENT PORTAL ============ -->
+<section class="section portal" id="portal">
+  <div class="container split wide-left">
+    <div class="reveal d2">
+      <div class="dash" id="dash">
+        <div class="winbar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="urlbar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg> client.routelogs.app/dashboard</span>
+          <span class="upd" id="dashUpd">updated 2s ago</span>
+        </div>
+        <div class="dash-body">
+          <div class="dash-row">
+            <h4>North district · Today</h4>
+            <div class="seg"><button class="on">Live</button><button>Day</button><button>Week</button></div>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><div class="k-lbl">Picked up</div><div class="k-val green" data-count="38">0</div><div class="k-delta">+6 last hr</div></div>
+            <div class="kpi"><div class="k-lbl">Pending</div><div class="k-val" data-count="5">0</div><div class="k-delta">2 due soon</div></div>
+            <div class="kpi"><div class="k-lbl">On-time</div><div class="k-val">96<small>%</small></div><div class="k-delta">+2.1%</div></div>
+            <div class="kpi"><div class="k-lbl">Avg temp</div><div class="k-val">4.3<small>°C</small></div><div class="k-delta">in range</div></div>
+          </div>
+          <div class="checks" id="checks">
+            <div class="ch-head"><span>Checkpoint</span><span>Updated</span><span>Status</span></div>
+            <div class="check collected"><span class="pt"><span class="pin"></span> Northgate Clinic</span><span class="tm">08:14</span><span class="badge collected"><span class="d"></span> Collected</span></div>
+            <div class="check transit"><span class="pt"><span class="pin"></span> Riverside Medical</span><span class="tm">08:41</span><span class="badge transit"><span class="d"></span> In transit</span></div>
+            <div class="check delayed"><span class="pt"><span class="pin"></span> Parkview Labs</span><span class="tm">09:02</span><span class="badge delayed"><span class="d"></span> Delayed</span></div>
+            <div class="check pending"><span class="pt"><span class="pin"></span> Hillside Practice</span><span class="tm">09:20</span><span class="badge pending"><span class="d"></span> Pending</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="eyebrow">Client portal</p>
+      <h2 class="h-section">Your clients see exactly what's happening — without calling you.</h2>
+      <p class="lead" style="margin-top:18px">Every customer gets a secure dashboard showing the real-time status of their checkpoints: what was picked up, what wasn't, and precisely where a problem occurred.</p>
+      <div class="portal-points">
+        <div class="portal-point">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+          <div><b>Real-time checkpoint status</b><p>Live state for every pickup point, updated as couriers move through the route.</p></div>
+        </div>
+        <div class="portal-point">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path></svg></span>
+          <div><b>Instant exception alerts</b><p>Delays and missed pickups surface immediately, with the where and why attached.</p></div>
+        </div>
+        <div class="portal-point">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m7 14 4-4 3 3 5-6"></path></svg></span>
+          <div><b>Full chain transparency</b><p>One trusted view from collection to lab — for the lab, the logistics team, and the clinic alike.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COURIER APP ============ -->
+<section class="section section--alt courierapp" id="app">
+  <div class="container split">
+    <div class="app-stage reveal d2">
+      <div class="phone">
+        <span class="notch"></span>
+        <div class="screen">
+          <div>
+            <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></div>
+            <div class="ph-label">Courier app</div>
+            <div class="ph-sub">[ app screen — screenshot to be added ]</div>
+          </div>
+        </div>
+      </div>
+      <div class="app-float a1">
+        <span class="ic green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+        <div>Stop 7 of 12<small>NEXT: RIVERSIDE</small></div>
+      </div>
+      <div class="app-float a2">
+        <span class="ic navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 7h8M8 11h8M8 15h5"></path></svg></span>
+        <div>Custody logged<small>3 SAMPLES · 08:41</small></div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="eyebrow">Courier app</p>
+      <h2 class="h-section">A native app built for the courier in the field.</h2>
+      <p class="lead" style="margin-top:18px">RouteLogs isn't only a dispatcher screen. The courier app — developed natively for this system, not bolted on — puts the live route in the driver's pocket and captures every handover at the point of pickup.</p>
+      <div class="app-feats">
+        <div class="app-feat">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.4-2.7A1 1 0 0 1 3 16.4V4.6a1 1 0 0 1 1.4-.9L9 6m0 14 6-3m-6 3V6m6 11 5.4 2.7A1 1 0 0 0 21 18.8V7a1 1 0 0 0-.6-.9L15 4m0 13V4m0 0L9 6"></path></svg></span>
+          <div><h4>The optimized route, in order</h4><p>Couriers follow the exact sequence RouteLogs builds — every stop, in the most efficient order, turn by turn.</p></div>
+        </div>
+        <div class="app-feat">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h2M16 3h2a2 2 0 0 1 2 2v2M20 17v2a2 2 0 0 1-2 2h-2M8 21H6a2 2 0 0 1-2-2v-2M7 12h10"></path></svg></span>
+          <div><h4>Scan &amp; confirm at every stop</h4><p>Log pickups, confirm counts, and capture chain-of-custody right at the clinic — no paper manifest required.</p></div>
+        </div>
+        <div class="app-feat">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 8-8M20 12a8 8 0 0 1-8 8M12 4l3 3-3 3M12 20l-3-3 3-3"></path></svg></span>
+          <div><h4>Synced the moment it happens</h4><p>Each completed stop updates dispatchers and the client portal in real time, so the whole chain stays current.</p></div>
+        </div>
+      </div>
+      <div class="app-store-row">
+        <span class="store-pill"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16.5 1c.1 1.2-.4 2.4-1.1 3.2-.8.9-2 1.6-3.2 1.5-.1-1.2.5-2.4 1.2-3.1.8-.9 2.1-1.5 3.1-1.6ZM20 17.4c-.6 1.3-.9 1.9-1.6 3.1-1 1.6-2.4 3.6-4.1 3.6-1.5 0-1.9-1-4-1-2 0-2.5 1-4 1-1.7 0-3-1.8-4-3.4-2.8-4.3-3-9.4-1.4-12.1 1.2-1.9 3-3 4.8-3 1.8 0 2.9 1 4.4 1 1.4 0 2.3-1 4.4-1 1.6 0 3.3.9 4.5 2.4-3.9 2.2-3.3 7.8.6 9.8Z"></path></svg> iOS — coming soon</span>
+        <span class="store-pill"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M3.6 2.3 13 11.7l-2.6 2.6L3 6.9c-.3-.4-.4-.9-.4-1.4V3.1c0-.4.3-.7.6-.8.2-.1.3-.1.4 0ZM14.4 13.1l2.8 2.8-3.1 1.8c-.4.2-.9.2-1.3 0l-1-.6 2.6-4ZM16.3 8.9 19.4 7c.5-.3.5-1 0-1.3l-3.1-1.8-2.7 4 2.7 1ZM2.6 21.7c-.3-.1-.6-.4-.6-.8v-2.4c0-.5.1-1 .4-1.4l7.4-7.4 2.6 2.6-9.4 9.4c-.1.1-.2.1-.4 0Z"></path></svg> Android — coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREENSHOT GALLERY ============ -->
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">Inside the platform</p>
+      <h2 class="h-section">A closer look</h2>
+      <p class="lead" style="margin-top:16px">Real product screens are on the way. Here's what they'll cover.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="shot reveal">
+        <div class="shot-head"><b>Routes</b><span class="tag">Dispatcher view</span></div>
+        <div class="placeholder">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.4-2.7A1 1 0 0 1 3 16.4V4.6a1 1 0 0 1 1.4-.9L9 6m0 14 6-3m-6 3V6m6 11 5.4 2.7A1 1 0 0 0 21 18.8V7a1 1 0 0 0-.6-.9L15 4m0 13V4m0 0L9 6"></path></svg></div>
+            <div class="ph-label">Routes</div>
+            <div class="ph-sub">[ screenshot to be added ]</div>
+          </div>
+        </div>
+      </div>
+      <div class="shot reveal d1">
+        <div class="shot-head"><b>Client Dashboard</b><span class="tag">Customer view</span></div>
+        <div class="placeholder">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg></div>
+            <div class="ph-label">Client Dashboard</div>
+            <div class="ph-sub">[ screenshot to be added ]</div>
+          </div>
+        </div>
+      </div>
+      <div class="shot reveal d2">
+        <div class="shot-head"><b>Pickup Status</b><span class="tag">Live tracking</span></div>
+        <div class="placeholder">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></div>
+            <div class="ph-label">Pickup Status</div>
+            <div class="ph-sub">[ screenshot to be added ]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO IT'S FOR ============ -->
+<section class="section section--alt" id="audience">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">Who it's for</p>
+      <h2 class="h-section">Built for the teams that move samples</h2>
+    </div>
+    <div class="aud-grid">
+      <div class="aud-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6l-5 9a2 2 0 0 0 1.8 3h12.4A2 2 0 0 0 20 18l-5-9V3"></path><path d="M8 3h8M8 14h8"></path></svg></div>
+        <h3>Laboratories</h3>
+        <p>Labs that organize collection from clinics across a territory and need certainty that samples arrive, on time and intact.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Guaranteed visibility into incoming samples</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Cold-chain assurance for sensitive specimens</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Fewer rejected or compromised samples</li>
+        </ul>
+      </div>
+      <div class="aud-card reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h13v11H1zM14 7h4l3 3v4h-7"></path><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg></div>
+        <h3>Logistics companies</h3>
+        <p>Operators contracted by labs to run collection — managing couriers, hubs, and schedules across many clients at once.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Optimized routing that cuts cost and time</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Multi-client hubs and consolidation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> A client portal that wins and keeps contracts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROI CALCULATOR ============ -->
+<section class="section roi" id="roi">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">ROI calculator</p>
+      <h2 class="h-section">See how many hours RouteLogs gives back.</h2>
+      <p class="lead" style="margin-top:16px">Automated route building and continuous route-quality tracking replace the hours dispatchers spend planning and re-planning by hand. Move the sliders to estimate what that's worth for your team.</p>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-controls reveal">
+        <div class="roi-control">
+          <div class="top"><label for="roiDisp">Dispatchers on your team</label><span class="val" id="roiDispVal">6</span></div>
+          <input class="roi-range" type="range" id="roiDisp" min="1" max="30" step="1" value="6">
+          <div class="scale"><span>1</span><span>30</span></div>
+        </div>
+        <div class="roi-control">
+          <div class="top"><label for="roiHrs">Hours each spends planning &amp; coordinating routes / week</label><span class="val" id="roiHrsVal">12<small> h</small></span></div>
+          <input class="roi-range" type="range" id="roiHrs" min="1" max="30" step="1" value="12">
+          <div class="scale"><span>1 h</span><span>30 h</span></div>
+        </div>
+        <div class="roi-control">
+          <div class="top"><label for="roiRate">Average loaded hourly cost</label>
+            <span class="roi-rate">€ <input type="number" id="roiRate" min="0" max="200" step="1" value="28"> / h</span>
+          </div>
+          <input class="roi-range" type="range" id="roiRateRange" min="10" max="80" step="1" value="28">
+          <div class="scale"><span>€10</span><span>€80</span></div>
+        </div>
+      </div>
+
+      <div class="roi-result reveal d1">
+        <div class="rk">
+          <div class="rk-lbl">Time reclaimed</div>
+          <div class="rk-big"><span id="roiHours">216</span><small>hours / month</small></div>
+          <div class="rk-sub">That's roughly <b id="roiDays">27</b> working days a month handed back to your dispatchers.</div>
+        </div>
+        <div class="rk-split">
+          <div>
+            <div class="num"><span class="accent">€<span id="roiCostM">6,048</span></span></div>
+            <div class="cap">Estimated cost reclaimed / month</div>
+          </div>
+          <div>
+            <div class="num">€<span id="roiCostY">72,576</span></div>
+            <div class="cap">…or about this much a year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="roi-note reveal">Estimate only. Assumes RouteLogs automates roughly 75% of the time spent on manual route planning and coordination. Actual results vary by territory, volume, and how your team works today — we'll model your real numbers in a demo.</p>
+  </div>
+</section>
+
+<!-- ============ SECURITY ============ -->
+<section class="section section--navy security" id="security">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">Security &amp; compliance</p>
+      <h2 class="h-section">Medical-grade security, by default.</h2>
+      <p class="lead" style="margin-top:16px">Specimen data is sensitive data. RouteLogs runs on the most trusted infrastructure available, with protection and reliability dialed to the maximum — so the chain of custody is also a chain of trust.</p>
+    </div>
+    <div class="sec-grid">
+      <div class="sec-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+        <h3>GDPR-aligned by design</h3>
+        <p>Data handling, consent, and retention built to meet GDPR and regional health-data requirements from day one.</p>
+      </div>
+      <div class="sec-card reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 .5-9 6 6 0 0 0-11.6-1.5A4 4 0 0 0 6.5 19h11Z"></path></svg></div>
+        <h3>Hosted on AWS</h3>
+        <p>Runs on Amazon Web Services' hardened, globally certified cloud — for the uptime and resilience enterprise infrastructure provides.</p>
+      </div>
+      <div class="sec-card reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div>
+        <h3>Encrypted end to end</h3>
+        <p>Data is encrypted in transit and at rest, with strict role-based access controls and a complete audit trail on every action.</p>
+      </div>
+      <div class="sec-card reveal d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg></div>
+        <h3>Hardened against attack</h3>
+        <p>Layered defenses, continuous monitoring, and the strongest security certifications in the industry protect every record.</p>
+      </div>
+    </div>
+    <div class="sec-badges reveal">
+      <span class="lbl">Standards &amp; controls</span>
+      <span class="sec-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> GDPR-aligned</span>
+      <span class="sec-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> AWS infrastructure</span>
+      <span class="sec-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Encryption at rest &amp; in transit</span>
+      <span class="sec-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Full audit logging</span>
+      <span class="sec-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Highest-grade protection</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section section--alt pricing" id="pricing">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">Pricing</p>
+      <h2 class="h-section">Early-access pricing for pre-launch partners.</h2>
+      <p class="lead" style="margin-top:16px">We're finalizing public pricing. Plans scale with your routes, couriers, and clients — never surprise fees. Sign on now and your founding rate is locked in.</p>
+    </div>
+    <div class="price-banner reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21l2.3-7.2-6-4.4h7.6L12 2Z"></path></svg> Founding-partner pricing — locked while we're pre-launch</div>
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <div class="p-name">Pilot</div>
+        <p class="p-tag">For a single territory and your first routes.</p>
+        <div class="p-price">By agreement<small>founding-partner rate</small></div>
+        <ul class="p-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Route building &amp; optimization</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Pickup scheduling</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Native courier app</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Client portal &amp; live status</li>
+        </ul>
+        <a href="#demo" class="btn btn-secondary btn-block">Talk to us</a>
+      </div>
+      <div class="price-card featured reveal d1">
+        <span class="p-ribbon">Most popular</span>
+        <div class="p-name">Operations</div>
+        <p class="p-tag">For active logistics teams running many clients.</p>
+        <div class="p-price">By agreement<small>scales with your volume</small></div>
+        <ul class="p-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Everything in Pilot</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Multi-hub consolidation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Multiple dispatchers &amp; clients</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Cold-chain tracking</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Priority support</li>
+        </ul>
+        <a href="#demo" class="btn btn-primary btn-block">Request a demo</a>
+      </div>
+      <div class="price-card reveal d2">
+        <div class="p-name">Enterprise</div>
+        <p class="p-tag">For labs and multi-region operators.</p>
+        <div class="p-price">Custom<small>tailored to your operation</small></div>
+        <ul class="p-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Everything in Operations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Custom integrations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> SLAs &amp; dedicated onboarding</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Direct input on the roadmap</li>
+        </ul>
+        <a href="#demo" class="btn btn-secondary btn-block">Contact sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILOT / FOUNDING PARTNERS ============ -->
+<section class="section pilot" id="pilot">
+  <div class="container">
+    <div class="pilot-wrap reveal">
+      <span class="pilot-status"><span class="blip"></span> Pre-launch · live with our first pilot</span>
+      <p class="pilot-quote"><span class="ph-mark">“ Founding-partner quote goes here — a sentence from your pilot lab or logistics lead on what changed once routes ran themselves. ”</span></p>
+      <p class="pilot-attrib">[ name · role · organization — to be added once the pilot signs off ]</p>
+      <div class="pilot-slots">
+        <div class="pilot-slot filled">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+          <span class="t">Pilot partner</span>
+        </div>
+        <div class="pilot-slot">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+          <span class="t">Your lab here</span>
+        </div>
+        <div class="pilot-slot">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+          <span class="t">Your team here</span>
+        </div>
+        <div class="pilot-slot">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+          <span class="t">Founding slot open</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section--alt faq" id="faq">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">FAQ</p>
+      <h2 class="h-section">Questions, answered</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary>How long does it take to get up and running?<span class="sign"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <div class="faq-body"><p>It depends on your size and volume. A single territory with one or two routes can be live in a matter of days. Larger operations — multiple hubs, dispatchers, and many clients — are introduced in phases over a few weeks. We map setup to your volume and migrate your existing schedule together with you.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Do we have to replace our couriers or vehicles?<span class="sign"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <div class="faq-body"><p>No. RouteLogs runs your existing couriers and routes — it plans and tracks the work, it doesn't replace your fleet. Your drivers simply pick up the native courier app and follow the optimized route.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a mobile app for couriers?<span class="sign"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <div class="faq-body"><p>Yes — a native app built specifically for RouteLogs. It guides each pickup in order, captures chain-of-custody at every stop, and syncs status back to dispatchers and the client portal in real time.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>How is our data protected?<span class="sign"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <div class="faq-body"><p>RouteLogs is GDPR-aligned, hosted on AWS, and encrypted in transit and at rest, with role-based access and full audit logging. See the <a href="#security">security section</a> for the full picture.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What about cold-chain and temperature-sensitive samples?<span class="sign"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <div class="faq-body"><p>RouteLogs is cold-chain aware today: it tracks cooling-container availability and records temperature conditions along the route. Direct temperature-sensor integration for continuous, automatic monitoring is on the roadmap.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Can our clients see their own samples?<span class="sign"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <div class="faq-body"><p>Yes. Every customer gets a secure portal showing real-time checkpoint status — what was picked up, what wasn't, and where any problem occurred — plus instant exception alerts.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>How much does it cost?<span class="sign"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <div class="faq-body"><p>We're finalizing public pricing. While we're pre-launch, founding partners get a locked-in founding rate, and plans scale with your routes, couriers, and clients. <a href="#demo">Request a demo</a> and we'll put a number to your operation.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>We run on spreadsheets and phone calls today — is switching hard?<span class="sign"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <div class="faq-body"><p>We onboard with you. We import your clinics and current schedule, run alongside your existing process, and switch over only once your team is confident. No big-bang cutover.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section class="section roadmap" id="roadmap">
+  <div class="container">
+    <div class="center measure-lg reveal" style="margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">Public roadmap</p>
+      <h2 class="h-section">Building in public, shipping in the open</h2>
+      <p class="lead" style="margin-top:16px">We share what we're working on so partners can shape it. Here's where RouteLogs is today — and where it's headed.</p>
+    </div>
+    <div class="road-grid">
+      <div class="road-col now reveal">
+        <div class="road-head"><span class="road-dot"></span><span class="road-tag">Live now</span></div>
+        <p class="road-sub">Shipping and in use today.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Route building &amp; optimization</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Pickup scheduling</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Transfer-hub consolidation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Real-time client portal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Native courier app</li>
+        </ul>
+      </div>
+      <div class="road-col next reveal d1">
+        <div class="road-head"><span class="road-dot"></span><span class="road-tag">Next up</span></div>
+        <p class="road-sub">In active development.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> Cold-chain monitoring &amp; temperature recording</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> Richer exception &amp; SLA alerts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> Analytics &amp; reporting dashboards</li>
+        </ul>
+      </div>
+      <div class="road-col later reveal d2">
+        <div class="road-head"><span class="road-dot"></span><span class="road-tag">On the horizon</span></div>
+        <p class="road-sub">Exploring with partners.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.2"></circle><path d="M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4"></path></svg> Live temperature-sensor integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3M16 7h3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3M9 12h6"></path></svg> LIS / LIMS &amp; lab-system integrations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 16-4-4 4-4M16 8l4 4-4 4"></path></svg> Open API for partners</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section cta" id="demo">
+  <div class="container cta-grid">
+    <div class="reveal">
+      <p class="eyebrow">Get started</p>
+      <h2>See RouteLogs run your chain, end to end.</h2>
+      <p class="lead">Request a demo and we'll walk you through scheduling, routing, hubs, cold chain, and the client portal — mapped to how your team works today.</p>
+      <div class="cta-bullets">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> A tailored walkthrough, not a generic pitch</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> Early-access pricing for pre-launch partners</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg> No commitment to explore</div>
+      </div>
+    </div>
+
+    <div class="reveal d1">
+      <div class="form-card">
+        <form id="demoForm" novalidate>
+          <h3>Request a Demo</h3>
+          <p class="sub">Tell us a little about you, then pick a time that works — we'll confirm the rest.</p>
+          <div class="field" id="f-name">
+            <label for="in-name">Full name</label>
+            <input id="in-name" name="name" type="text" placeholder="Jordan Avery" autocomplete="name">
+            <span class="err">Please enter your name.</span>
+          </div>
+          <div class="field" id="f-company">
+            <label for="in-company">Company</label>
+            <input id="in-company" name="company" type="text" placeholder="Meridian Diagnostics" autocomplete="organization">
+            <span class="err">Please enter your company.</span>
+          </div>
+          <div class="field" id="f-email">
+            <label for="in-email">Work email</label>
+            <input id="in-email" name="email" type="email" placeholder="jordan@meridianlabs.com" autocomplete="email">
+            <span class="err">Please enter a valid email address.</span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Request a Demo</button>
+          <p class="legal">By requesting a demo you agree to be contacted about RouteLogs. We never share your details.</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="check-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
+          <h3>Almost there, <span id="successName">there</span></h3>
+          <p>Pick a time in the scheduler to lock in your walkthrough. Don't see it? <a href="#" id="reopenCal" class="accent" style="font-weight:600">Reopen the calendar</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="brand">
+          <span class="logomark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="6" cy="6" r="2.2"></circle><circle cx="18" cy="18" r="2.2"></circle>
+              <path d="M8 6h6a3 3 0 0 1 0 6H10a3 3 0 0 0 0 6h6"></path>
+            </svg>
+          </span>
+          <span><b>Route</b><span class="logs">Logs</span></span>
+        </a>
+        <p class="f-desc">Automated medical specimen logistics — from the clinic where samples are collected to the lab where they're processed.</p>
+        <div class="f-contact">
+          <a href="mailto:hello@routelogs.app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg> hello@routelogs.app</a>
+          <a href="tel:+10000000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"></path></svg> +1 (000) 000-0000</a>
+        </div>
+      </div>
+      <div>
+        <h5>Platform</h5>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#capabilities">Capabilities</a></li>
+          <li><a href="#app">Courier app</a></li>
+          <li><a href="#coldchain">Cold chain</a></li>
+          <li><a href="#security">Security</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#demo">Request a demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Account</h5>
+        <ul>
+          <li><a href="#">Log in</a></li>
+          <li><a href="#demo">Get started</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="copy">© 2026 RouteLogs. All rights reserved.</span>
+      <span class="pre">PRE-LAUNCH · BUILDING IN PUBLIC</span>
+      <a href="#" class="btn btn-ghost-light btn-sm">Log in</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
