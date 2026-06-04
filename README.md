@@ -41,7 +41,7 @@ npm run build                 # → ./dist  (minified, content-hashed, fonts cop
 SITE_URL="https://your-domain.com" npm run build   # set the canonical domain
 ```
 
-`SITE_URL` (default `https://routelogs.app`) is substituted into the canonical /
+`SITE_URL` (default `https://routelogs.up.railway.app`) is substituted into the canonical /
 Open Graph / sitemap / robots / security.txt URLs at build time — the one place
 the production domain is configured.
 
@@ -95,7 +95,7 @@ you'll need to reproduce the headers/caching from `Caddyfile` yourself.
 
 ## Before going live (intentional placeholders)
 
-- **Domain:** set `SITE_URL` to the real domain (currently `routelogs.app`).
+- **Domain:** set `SITE_URL` to the real domain (currently `routelogs.up.railway.app`).
 - **Calendly:** set your real link in `app.js` (`var CALENDLY_URL = …`).
 - **Contacts:** real phone (and the "Log in" links, once the app exists).
 - **Product screenshots:** the labeled placeholders await real images.

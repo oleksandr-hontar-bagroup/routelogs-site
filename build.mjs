@@ -3,7 +3,7 @@
  *
  *   • minify + content-hash styles.css → styles-<hash>.css, app.js → app-<hash>.js
  *   • rewrite those references (root-absolute) in every HTML page
- *   • substitute %%SITE_URL%% (env SITE_URL, default https://routelogs.app)
+ *   • substitute %%SITE_URL%% (env SITE_URL, default https://routelogs.up.railway.app)
  *   • minify HTML
  *   • copy fonts + brand assets + robots/sitemap/manifest/security.txt
  *
@@ -21,7 +21,7 @@ const dist = resolve(root, "dist");
 const r = (p) => resolve(root, p);
 const d = (p) => resolve(dist, p);
 
-const SITE_URL = (process.env.SITE_URL || "https://routelogs.app").replace(/\/+$/, "");
+const SITE_URL = (process.env.SITE_URL || "https://routelogs.up.railway.app").replace(/\/+$/, "");
 const hash = (s) => createHash("sha256").update(s).digest("hex").slice(0, 8);
 const sub = (s) => s.split("%%SITE_URL%%").join(SITE_URL);
 

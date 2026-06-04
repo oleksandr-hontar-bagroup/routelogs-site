@@ -1,7 +1,7 @@
 /* TEAM */
   RouteLogs — automated medical specimen logistics, clinic to lab.
   Contact: hello@routelogs.app
-  Site: https://routelogs.app
+  Site: https://routelogs.up.railway.app
 
 /* SITE */
   Last update: 2026-06-04

@@ -8,7 +8,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --include=dev --omit=optional
 COPY . .
 # Railway passes service variables as build args; bake the canonical domain in.
-ARG SITE_URL=https://routelogs.app
+ARG SITE_URL=https://routelogs.up.railway.app
 ENV SITE_URL=$SITE_URL
 RUN node build.mjs
 
