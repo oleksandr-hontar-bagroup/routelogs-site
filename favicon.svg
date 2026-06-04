@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="RouteLogs">
+  <rect width="24" height="24" rx="6" fill="#0d2a4a"/>
+  <g transform="translate(4 4) scale(0.6667)" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="6" cy="6" r="2.2"/>
+    <circle cx="18" cy="18" r="2.2"/>
+    <path d="M8 6h6a3 3 0 0 1 0 6H10a3 3 0 0 0 0 6h6"/>
+  </g>
+</svg>

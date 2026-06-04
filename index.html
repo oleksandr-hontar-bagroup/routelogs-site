@@ -3,16 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RouteLogs — Automated medical specimen logistics</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<title>RouteLogs — Automated medical specimen logistics, clinic to lab</title>
+<meta name="description" content="RouteLogs automates medical specimen logistics end to end — pickup scheduling, optimized courier routes, transfer-hub consolidation, cold-chain tracking and a real-time client portal, from the clinic to the lab.">
+<link rel="canonical" href="%%SITE_URL%%/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0d2a4a">
+<meta name="color-scheme" content="light">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RouteLogs">
+<meta property="og:title" content="RouteLogs — Automated medical specimen logistics">
+<meta property="og:description" content="Pickup scheduling, optimized courier routes, transfer-hub consolidation, cold-chain tracking and a real-time client portal — from clinic to lab.">
+<meta property="og:url" content="%%SITE_URL%%/">
+<meta property="og:image" content="%%SITE_URL%%/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RouteLogs — automate the journey of every medical specimen, clinic to lab">
+<meta property="og:locale" content="en">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RouteLogs — Automated medical specimen logistics">
+<meta name="twitter:description" content="Pickup scheduling, optimized courier routes, transfer-hub consolidation, cold-chain tracking and a real-time client portal — from clinic to lab.">
+<meta name="twitter:image" content="%%SITE_URL%%/og-image.png">
+<meta name="twitter:image:alt" content="RouteLogs — automate the journey of every medical specimen, clinic to lab">
+
+<!-- Icons & manifest -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Fonts: self-hosted (no third-party CDN); preload the two most used above the fold -->
+<link rel="preload" href="/fonts/plus-jakarta-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+
 <link rel="stylesheet" href="styles.css">
-<!-- Calendly scheduling widget -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "RouteLogs",
+  "url": "%%SITE_URL%%/",
+  "logo": "%%SITE_URL%%/icon-512.png",
+  "image": "%%SITE_URL%%/og-image.png",
+  "description": "Automated medical specimen logistics — from the clinic where samples are collected to the lab where they are processed.",
+  "email": "hello@routelogs.app",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hello@routelogs.app",
+    "contactType": "sales",
+    "availableLanguage": ["English"]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "RouteLogs",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "url": "%%SITE_URL%%/",
+  "image": "%%SITE_URL%%/og-image.png",
+  "description": "RouteLogs runs medical specimen logistics end to end: pickup scheduling, automatic courier-route optimization, transfer-hub consolidation, cold-chain tracking and a real-time client portal.",
+  "featureList": [
+    "Route building & optimization",
+    "Pickup scheduling",
+    "Transfer-hub management & consolidation",
+    "Client portal & live status",
+    "Cold-chain tracking",
+    "Native courier app"
+  ],
+  "publisher": { "@type": "Organization", "name": "RouteLogs" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does it take to get up and running?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It depends on your size and volume. A single territory with one or two routes can be live in a matter of days. Larger operations — multiple hubs, dispatchers, and many clients — are introduced in phases over a few weeks. We map setup to your volume and migrate your existing schedule together with you." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do we have to replace our couriers or vehicles?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. RouteLogs runs your existing couriers and routes — it plans and tracks the work, it doesn't replace your fleet. Your drivers simply pick up the native courier app and follow the optimized route." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a mobile app for couriers?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — a native app built specifically for RouteLogs. It guides each pickup in order, captures chain-of-custody at every stop, and syncs status back to dispatchers and the client portal in real time." }
+    },
+    {
+      "@type": "Question",
+      "name": "How is our data protected?",
+      "acceptedAnswer": { "@type": "Answer", "text": "RouteLogs is GDPR-aligned, hosted on AWS, and encrypted in transit and at rest, with role-based access and full audit logging." }
+    },
+    {
+      "@type": "Question",
+      "name": "What about cold-chain and temperature-sensitive samples?",
+      "acceptedAnswer": { "@type": "Answer", "text": "RouteLogs is cold-chain aware today: it tracks cooling-container availability and records temperature conditions along the route. Direct temperature-sensor integration for continuous, automatic monitoring is on the roadmap." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can our clients see their own samples?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every customer gets a secure portal showing real-time checkpoint status — what was picked up, what wasn't, and where any problem occurred — plus instant exception alerts." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We're finalizing public pricing. While we're pre-launch, founding partners get a locked-in founding rate, and plans scale with your routes, couriers, and clients. Request a demo and we'll put a number to your operation." }
+    },
+    {
+      "@type": "Question",
+      "name": "We run on spreadsheets and phone calls today — is switching hard?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We onboard with you. We import your clinics and current schedule, run alongside your existing process, and switch over only once your team is confident. No big-bang cutover." }
+    }
+  ]
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#top">Skip to content</a>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header" id="siteHeader">
@@ -100,7 +219,7 @@
     <div class="reveal">
       <p class="eyebrow">The problem</p>
       <h2 class="h-section">Coordinating sample collection by hand is fragile, slow, and invisible.</h2>
-      <p class="lead" style="margin-top:18px">Spreadsheets, phone calls, and paper manifests can't keep up with dozens of clinics, multiple couriers, and time-sensitive samples. When something slips, nobody finds out until it's too late.</p>
+      <p class="lead u-mt-18">Spreadsheets, phone calls, and paper manifests can't keep up with dozens of clinics, multiple couriers, and time-sensitive samples. When something slips, nobody finds out until it's too late.</p>
       <div class="pain-list">
         <div class="pain-item">
           <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
@@ -132,7 +251,7 @@
 <!-- ============ SOLUTION ============ -->
 <section class="section solution" id="solution">
   <div class="container">
-    <p class="eyebrow center reveal" style="justify-content:center">The solution</p>
+    <p class="eyebrow center reveal u-jc-center">The solution</p>
     <h2 class="h-section reveal d1">One platform that runs specimen logistics end to end —<span class="muted"> scheduling, routing, hubs, and transparency in a single system of record.</span></h2>
     <div class="solution-points">
       <div class="solution-point reveal d1">
@@ -157,10 +276,10 @@
 <!-- ============ HOW IT WORKS ============ -->
 <section class="section section--alt" id="how">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">How it works</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">How it works</p>
       <h2 class="h-section">From clinic to lab in four coordinated steps</h2>
-      <p class="lead" style="margin-top:16px">Follow a sample through the chain. Select a step to trace it on the live route map.</p>
+      <p class="lead u-mt-16">Follow a sample through the chain. Select a step to trace it on the live route map.</p>
     </div>
 
     <div class="how-grid">
@@ -187,9 +306,9 @@
         <div class="map-head">
           <span class="tag">Route schematic</span>
           <span class="legend">
-            <span><i style="background:#34c281"></i> Clinic</span>
-            <span><i style="background:#2a6299"></i> Hub</span>
-            <span><i style="background:#fff"></i> Lab</span>
+            <span><i class="c-clinic"></i> Clinic</span>
+            <span><i class="c-hub"></i> Hub</span>
+            <span><i class="c-lab"></i> Lab</span>
           </span>
         </div>
         <div class="routemap" id="routemap"></div>
@@ -205,8 +324,8 @@
 <!-- ============ CAPABILITIES ============ -->
 <section class="section" id="capabilities">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">Key capabilities</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">Key capabilities</p>
       <h2 class="h-section">Everything the chain needs, in one platform</h2>
     </div>
     <div class="cap-grid">
@@ -251,7 +370,7 @@
     <div class="reveal">
       <p class="eyebrow">Sample integrity</p>
       <h2 class="h-section">Protect specimen quality across the entire cold chain.</h2>
-      <p class="lead" style="margin-top:18px">A sample is only as good as the conditions it travels in. RouteLogs treats preservation as a first-class part of logistics — not an afterthought.</p>
+      <p class="lead u-mt-18">A sample is only as good as the conditions it travels in. RouteLogs treats preservation as a first-class part of logistics — not an afterthought.</p>
       <div class="cold-feats">
         <div class="cold-feat">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M12 7l3-3M12 7 9 4M12 17l3 3M12 17l-3 3M4 12h16M7 12 4 9M7 12l-3 3M17 12l3-3M17 12l3 3"></path></svg></span>
@@ -289,7 +408,7 @@
           <span>now</span>
         </div>
       </div>
-      <div class="placeholder dark" style="margin-top:20px;min-height:120px">
+      <div class="placeholder dark u-mt-20 u-minh-120">
         <div class="ph-inner">
           <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="m3 16 5-5 4 4 3-3 6 6"></path><circle cx="8.5" cy="8.5" r="1.5"></circle></svg></div>
           <div class="ph-label">Cold-chain visual</div>
@@ -335,7 +454,7 @@
     <div class="reveal">
       <p class="eyebrow">Client portal</p>
       <h2 class="h-section">Your clients see exactly what's happening — without calling you.</h2>
-      <p class="lead" style="margin-top:18px">Every customer gets a secure dashboard showing the real-time status of their checkpoints: what was picked up, what wasn't, and precisely where a problem occurred.</p>
+      <p class="lead u-mt-18">Every customer gets a secure dashboard showing the real-time status of their checkpoints: what was picked up, what wasn't, and precisely where a problem occurred.</p>
       <div class="portal-points">
         <div class="portal-point">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
@@ -381,7 +500,7 @@
     <div class="reveal">
       <p class="eyebrow">Courier app</p>
       <h2 class="h-section">A native app built for the courier in the field.</h2>
-      <p class="lead" style="margin-top:18px">RouteLogs isn't only a dispatcher screen. The courier app — developed natively for this system, not bolted on — puts the live route in the driver's pocket and captures every handover at the point of pickup.</p>
+      <p class="lead u-mt-18">RouteLogs isn't only a dispatcher screen. The courier app — developed natively for this system, not bolted on — puts the live route in the driver's pocket and captures every handover at the point of pickup.</p>
       <div class="app-feats">
         <div class="app-feat">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.4-2.7A1 1 0 0 1 3 16.4V4.6a1 1 0 0 1 1.4-.9L9 6m0 14 6-3m-6 3V6m6 11 5.4 2.7A1 1 0 0 0 21 18.8V7a1 1 0 0 0-.6-.9L15 4m0 13V4m0 0L9 6"></path></svg></span>
@@ -407,10 +526,10 @@
 <!-- ============ SCREENSHOT GALLERY ============ -->
 <section class="section" id="gallery">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">Inside the platform</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">Inside the platform</p>
       <h2 class="h-section">A closer look</h2>
-      <p class="lead" style="margin-top:16px">Real product screens are on the way. Here's what they'll cover.</p>
+      <p class="lead u-mt-16">Real product screens are on the way. Here's what they'll cover.</p>
     </div>
     <div class="gallery-grid">
       <div class="shot reveal">
@@ -450,8 +569,8 @@
 <!-- ============ WHO IT'S FOR ============ -->
 <section class="section section--alt" id="audience">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">Who it's for</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">Who it's for</p>
       <h2 class="h-section">Built for the teams that move samples</h2>
     </div>
     <div class="aud-grid">
@@ -482,10 +601,10 @@
 <!-- ============ ROI CALCULATOR ============ -->
 <section class="section roi" id="roi">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">ROI calculator</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">ROI calculator</p>
       <h2 class="h-section">See how many hours RouteLogs gives back.</h2>
-      <p class="lead" style="margin-top:16px">Automated route building and continuous route-quality tracking replace the hours dispatchers spend planning and re-planning by hand. Move the sliders to estimate what that's worth for your team.</p>
+      <p class="lead u-mt-16">Automated route building and continuous route-quality tracking replace the hours dispatchers spend planning and re-planning by hand. Move the sliders to estimate what that's worth for your team.</p>
     </div>
 
     <div class="roi-grid">
@@ -534,10 +653,10 @@
 <!-- ============ SECURITY ============ -->
 <section class="section section--navy security" id="security">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">Security &amp; compliance</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">Security &amp; compliance</p>
       <h2 class="h-section">Medical-grade security, by default.</h2>
-      <p class="lead" style="margin-top:16px">Specimen data is sensitive data. RouteLogs runs on the most trusted infrastructure available, with protection and reliability dialed to the maximum — so the chain of custody is also a chain of trust.</p>
+      <p class="lead u-mt-16">Specimen data is sensitive data. RouteLogs runs on the most trusted infrastructure available, with protection and reliability dialed to the maximum — so the chain of custody is also a chain of trust.</p>
     </div>
     <div class="sec-grid">
       <div class="sec-card reveal">
@@ -575,10 +694,10 @@
 <!-- ============ PRICING ============ -->
 <section class="section section--alt pricing" id="pricing">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">Pricing</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">Pricing</p>
       <h2 class="h-section">Early-access pricing for pre-launch partners.</h2>
-      <p class="lead" style="margin-top:16px">We're finalizing public pricing. Plans scale with your routes, couriers, and clients — never surprise fees. Sign on now and your founding rate is locked in.</p>
+      <p class="lead u-mt-16">We're finalizing public pricing. Plans scale with your routes, couriers, and clients — never surprise fees. Sign on now and your founding rate is locked in.</p>
     </div>
     <div class="price-banner reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21l2.3-7.2-6-4.4h7.6L12 2Z"></path></svg> Founding-partner pricing — locked while we're pre-launch</div>
     <div class="price-grid">
@@ -656,8 +775,8 @@
 <!-- ============ FAQ ============ -->
 <section class="section section--alt faq" id="faq">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">FAQ</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">FAQ</p>
       <h2 class="h-section">Questions, answered</h2>
     </div>
     <div class="faq-list reveal">
@@ -700,10 +819,10 @@
 <!-- ============ ROADMAP ============ -->
 <section class="section roadmap" id="roadmap">
   <div class="container">
-    <div class="center measure-lg reveal" style="margin-inline:auto">
-      <p class="eyebrow" style="justify-content:center">Public roadmap</p>
+    <div class="center measure-lg reveal u-mi-auto">
+      <p class="eyebrow u-jc-center">Public roadmap</p>
       <h2 class="h-section">Building in public, shipping in the open</h2>
-      <p class="lead" style="margin-top:16px">We share what we're working on so partners can shape it. Here's where RouteLogs is today — and where it's headed.</p>
+      <p class="lead u-mt-16">We share what we're working on so partners can shape it. Here's where RouteLogs is today — and where it's headed.</p>
     </div>
     <div class="road-grid">
       <div class="road-col now reveal">
@@ -779,7 +898,7 @@
         <div class="form-success" id="formSuccess">
           <div class="check-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
           <h3>Almost there, <span id="successName">there</span></h3>
-          <p>Pick a time in the scheduler to lock in your walkthrough. Don't see it? <a href="#" id="reopenCal" class="accent" style="font-weight:600">Reopen the calendar</a>.</p>
+          <p>Pick a time in the scheduler to lock in your walkthrough. Don't see it? <a href="#" id="reopenCal" class="accent u-fw-600">Reopen the calendar</a>.</p>
         </div>
       </div>
     </div>
@@ -832,8 +951,8 @@
         <ul>
           <li><a href="#">Log in</a></li>
           <li><a href="#demo">Get started</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/terms">Terms</a></li>
         </ul>
       </div>
     </div>

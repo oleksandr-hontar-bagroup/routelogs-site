@@ -1,0 +1,21 @@
+{
+  "name": "routelogs-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "RouteLogs marketing site — automated medical specimen logistics",
+  "scripts": {
+    "build": "node build.mjs",
+    "gen:fonts": "node scripts/fetch-fonts.mjs",
+    "gen:assets": "node scripts/gen-assets.mjs",
+    "verify": "node scripts/verify-headers.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "html-minifier-terser": "^7.2.0"
+  },
+  "optionalDependencies": {
+    "png-to-ico": "^2.1.8",
+    "sharp": "^0.34.1"
+  }
+}

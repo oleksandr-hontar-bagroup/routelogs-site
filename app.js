@@ -10,19 +10,54 @@ document.documentElement.classList.add('js');
      e.g. "https://calendly.com/your-team/demo"
    The query params just brand the popup (green accent) and hide
    the cookie banner — keep them on your real URL too.
+
+   The Calendly assets are loaded LAZILY, only on the first
+   "Request a Demo" interaction — so no third-party request is
+   made on initial page load (faster first paint + privacy).
    ============================================================ */
 var CALENDLY_URL = "https://calendly.com/routelogs/demo"; // <-- PLACEHOLDER: swap for your real Calendly link
+var CALENDLY_ASSETS = "https://assets.calendly.com/assets/external/";
+var calendlyRequested = false;
+
 function calendlyUrl(){
   var sep = CALENDLY_URL.indexOf('?') === -1 ? '?' : '&';
   return CALENDLY_URL + sep + 'hide_gdpr_banner=1&primary_color=1faa6a';
 }
-function openCalendly(prefill){
-  if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function'){
-    window.Calendly.initPopupWidget({ url: calendlyUrl(), prefill: prefill || {} });
+
+/* Inject widget.css + widget.js once, then run cb when Calendly is ready. */
+function loadCalendly(cb){
+  if (window.Calendly){ cb(); return; }
+  if (!calendlyRequested){
+    calendlyRequested = true;
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = CALENDLY_ASSETS + 'widget.css';
+    document.head.appendChild(css);
+    var js = document.createElement('script');
+    js.src = CALENDLY_ASSETS + 'widget.js';
+    js.async = true;
+    js.onload = cb;
+    js.onerror = cb; // openCalendly falls back to a new tab if the API is missing
+    document.head.appendChild(js);
   } else {
-    // Failsafe if the widget script hasn't loaded — open the scheduler in a new tab.
-    window.open(CALENDLY_URL, '_blank', 'noopener');
+    // Requested but not ready yet (rapid second click) — poll briefly.
+    var n = 0;
+    (function wait(){
+      if (window.Calendly || n++ > 100) cb();
+      else setTimeout(wait, 50);
+    })();
   }
+}
+
+function openCalendly(prefill){
+  loadCalendly(function(){
+    if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function'){
+      window.Calendly.initPopupWidget({ url: calendlyUrl(), prefill: prefill || {} });
+    } else {
+      // Failsafe if the widget script can't load — open the scheduler in a new tab.
+      window.open(CALENDLY_URL, '_blank', 'noopener');
+    }
+  });
   return false;
 }
 
