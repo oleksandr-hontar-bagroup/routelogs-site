@@ -6,6 +6,9 @@ COPY package.json package-lock.json ./
 # image-generation deps (sharp, png-to-ico) are not — assets are pre-generated.
 RUN npm ci --include=dev --omit=optional
 COPY . .
+# Railway passes service variables as build args; bake the canonical domain in.
+ARG SITE_URL=https://routelogs.app
+ENV SITE_URL=$SITE_URL
 RUN node build.mjs
 
 # ---------- serve stage: Caddy serving the static /dist ----------
