@@ -156,6 +156,22 @@
     <div class="header-actions">
       <a href="#login" data-login class="btn btn-secondary btn-sm">Log in</a>
       <a href="#demo" class="btn btn-primary btn-sm">Request a Demo</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <a href="#how">How it works</a>
+      <a href="#app">Courier app</a>
+      <a href="#security">Security</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="mm-actions">
+      <a href="#login" class="btn btn-secondary btn-block" data-login>Log in</a>
+      <a href="#demo" class="btn btn-primary btn-block">Request a Demo</a>
     </div>
   </div>
 </header>
@@ -615,7 +631,7 @@
           <div class="scale"><span>1</span><span>30</span></div>
         </div>
         <div class="roi-control">
-          <div class="top"><label for="roiHrs">Hours each spends planning &amp; coordinating routes / week</label><span class="val" id="roiHrsVal">12<small> h</small></span></div>
+          <div class="top"><label for="roiHrs">Hours/week each spends planning routes</label><span class="val" id="roiHrsVal">12<small> h</small></span></div>
           <input class="roi-range" type="range" id="roiHrs" min="1" max="30" step="1" value="12">
           <div class="scale"><span>1 h</span><span>30 h</span></div>
         </div>
@@ -740,6 +756,7 @@
         <a href="#demo" class="btn btn-secondary btn-block">Contact sales</a>
       </div>
     </div>
+    <div class="price-dots" id="priceDots" aria-hidden="true"></div>
   </div>
 </section>
 

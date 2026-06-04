@@ -564,3 +564,47 @@ function buildRouteSVG(prefix, opts) {
   });
   if (location.hash === '#login') { open('signin'); history.replaceState(null, '', location.pathname + location.search); }
 })();
+
+/* ---------- Mobile menu ---------- */
+(function initMobileMenu(){
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('mobileMenu');
+  if (!toggle || !menu) return;
+  function setOpen(open){
+    menu.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+  }
+  toggle.addEventListener('click', function(){ setOpen(toggle.getAttribute('aria-expanded') !== 'true'); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+  window.addEventListener('resize', function(){ if (window.innerWidth > 980) setOpen(false); });
+})();
+
+/* ---------- Pricing carousel dots (mobile) ---------- */
+(function initPricingDots(){
+  var grid = document.querySelector('.price-grid');
+  var dotsWrap = document.getElementById('priceDots');
+  if (!grid || !dotsWrap) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.price-card'));
+  if (!cards.length) return;
+  cards.forEach(function(card, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'View plan ' + (i + 1));
+    b.addEventListener('click', function(){ grid.scrollTo({ left: card.offsetLeft - cards[0].offsetLeft, behavior: 'smooth' }); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+  var raf;
+  function update(){
+    var base = grid.scrollLeft, best = 0, bd = Infinity;
+    cards.forEach(function(card, i){
+      var d = Math.abs((card.offsetLeft - cards[0].offsetLeft) - base);
+      if (d < bd){ bd = d; best = i; }
+    });
+    dots.forEach(function(d, i){ d.classList.toggle('on', i === best); });
+  }
+  grid.addEventListener('scroll', function(){ if (raf) cancelAnimationFrame(raf); raf = requestAnimationFrame(update); }, { passive: true });
+  update();
+})();

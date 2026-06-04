@@ -876,20 +876,6 @@ img, svg { display: block; max-width: 100%; }
 .road-col.next li svg, .road-col.later li svg { color: var(--slate-2); }
 .road-col.later li { color: var(--slate); }
 
-/* ============================================================
-   Responsive — new sections
-   ============================================================ */
-@media (max-width: 980px) {
-  .courierapp .split, .roi-grid { grid-template-columns: 1fr; }
-  .courierapp .app-stage { order: -1; }
-  .sec-grid, .price-grid, .road-grid { grid-template-columns: repeat(2,1fr); }
-  .pilot-slots { grid-template-columns: repeat(2,1fr); }
-}
-@media (max-width: 600px) {
-  .sec-grid, .price-grid, .road-grid, .pilot-slots { grid-template-columns: 1fr; }
-  .roi-result .rk-split { grid-template-columns: 1fr; }
-}
-
 /* ---------- Scroll reveal ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
 .js .reveal.in { opacity: 1; transform: none; }
@@ -903,22 +889,208 @@ img, svg { display: block; max-width: 100%; }
   * { animation: none !important; scroll-behavior: auto !important; }
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 980px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-visual { order: -1; max-width: 540px; }
-  .split, .split.wide-left, .cta-grid, .how-grid, .portal .split { grid-template-columns: 1fr; }
-  .how-grid .map-panel { order: -1; }
-  .cap-grid, .solution-points { grid-template-columns: repeat(2,1fr); }
-  .kpis { grid-template-columns: repeat(2,1fr); }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
+/* ============================================================
+   Mobile nav — hamburger + slide-down menu
+   ============================================================ */
+.nav-toggle {
+  display: none;
+  width: 42px; height: 42px;
+  border: 1px solid var(--line); background: #fff; border-radius: 11px;
+  cursor: pointer; padding: 0;
+  place-items: center; gap: 5px; flex-direction: column;
+  box-shadow: var(--shadow-sm);
 }
-@media (max-width: 600px) {
-  .cap-grid, .solution-points, .gallery-grid, .aud-grid { grid-template-columns: 1fr; }
-  .hero-float { display: none; }
-  .header-actions .btn-secondary { display: none; }
-  .footer-top { grid-template-columns: 1fr; }
+.nav-toggle span { width: 18px; height: 2px; border-radius: 2px; background: var(--navy-800); transition: transform .25s ease, opacity .2s ease; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  background: rgba(255,255,255,.97);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--line);
+  transition: max-height .32s cubic-bezier(.4,0,.2,1);
+}
+.mobile-menu.open { max-height: 460px; }
+.mobile-menu nav { display: flex; flex-direction: column; padding: 8px var(--pad) 4px; }
+.mobile-menu nav a { font-size: 17px; font-weight: 600; color: var(--navy-800); padding: 15px 0; border-bottom: 1px solid var(--line-2); }
+.mobile-menu nav a:last-child { border-bottom: 0; }
+.mobile-menu .mm-actions { display: grid; gap: 10px; padding: 12px var(--pad) 22px; }
+
+/* pricing carousel dots (shown on phones only) */
+.price-dots { display: none; }
+
+/* ============================================================
+   Responsive — consolidated
+   ============================================================ */
+
+/* ---- Tablet & below: stack two-column layouts, swap nav for menu ---- */
+@media (max-width: 980px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: inline-grid; }
+  .mobile-menu { display: block; }
+
+  .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+  .hero-copy { order: 1; }
+  .hero-visual { order: 2; max-width: 520px; width: 100%; margin-inline: auto; }
+  .hero .lead { max-width: none; }
+
+  .split, .split.wide-left,
+  .cta-grid, .how-grid,
+  .portal .split, .courierapp .split,
+  .coldchain .split, .roi-grid { grid-template-columns: 1fr; }
+
+  .how-grid { gap: 22px; margin-top: 36px; }
+  /* Keep the schematic + caption pinned while the steps scroll, so tapping
+     a step visibly updates the map even though they're now stacked. */
+  .how-grid .map-panel {
+    order: -1;
+    position: sticky;
+    top: 84px;
+    z-index: 2;
+    min-height: 0;
+    padding: 20px;
+  }
+  .how-grid .routemap { max-height: 150px; }
+  .how-grid .routemap svg { width: auto; max-width: 100%; max-height: 150px; }
+  .how-grid .map-panel .map-caption { padding: 12px 14px; margin-top: 10px; }
+  .how-grid .map-panel .map-caption p { font-size: 13px; }
+
+  .cap-grid, .solution-points, .sec-grid,
+  .price-grid, .road-grid, .gallery-grid { grid-template-columns: repeat(2,1fr); }
+  .pilot-slots { grid-template-columns: repeat(2,1fr); }
+  .kpis { grid-template-columns: repeat(4,1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+
+  /* featured price card no longer needs to pop above siblings when stacked */
+  .price-card.featured { transform: none; }
+}
+
+/* ---- Phone: single column + mobile-specific treatments ---- */
+@media (max-width: 640px) {
+  .section { padding-block: clamp(52px, 13vw, 76px); }
+
+  /* Header: keep it to logo + menu only */
+  .header-actions .btn-secondary,
+  .header-actions .btn-primary { display: none; }
+  .header-inner { gap: 12px; }
+
+  /* Hero — headline first, floats become a tidy 2-up stat row under the map */
+  .hero-grid { gap: 36px; padding-block: 40px 8px; }
+  .hero h1 { margin-bottom: 18px; }
+  .hero .lead { margin-bottom: 24px; }
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 12px; }
+  .hero-cta .btn { width: 100%; }
+  .hero-trust { gap: 12px 18px; margin-top: 26px; }
+
+  .hero-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    max-width: 460px;
+  }
+  .hero-visual .map-card { grid-column: 1 / -1; }
+  .hero-float {
+    position: static; inset: auto; animation: none;
+    box-shadow: var(--shadow-sm); margin: 0;
+  }
+
+  /* Courier-app floats are decorative duplicates of the feature list — drop them */
+  .app-float { display: none; }
+  .app-stage { padding-block: 0; }
+
+  /* One column everywhere */
+  .cap-grid, .solution-points, .gallery-grid, .aud-grid,
+  .sec-grid, .road-grid, .pilot-slots,
+  .stat-stack { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 30px 20px; padding-bottom: 32px; }
+  .footer-top > :first-child { grid-column: 1 / -1; }
+  .footer h5 { margin-bottom: 12px; }
+  .footer .f-desc { margin-bottom: 4px; }
+
+  /* Headings/sections breathing room */
+  .solution-points, .cap-grid, .sec-grid, .price-grid,
+  .road-grid, .gallery-grid, .aud-grid, .faq-list { margin-top: 34px; }
+  .pilot-slots { margin-top: 30px; }
+
+  /* Problem stat cards a touch smaller */
+  .stat-card { padding: 24px 24px; }
+  .stat-card .num { font-size: 38px; }
+  .stat-card .cap { max-width: none; }
+
+  /* ROI calculator — compact mobile layout: big result on top, slim sliders below */
+  .roi .center.measure-lg .lead { display: none; }
+  .roi-grid { margin-top: 24px; gap: 16px; }
+  .roi-result { order: -1; padding: 22px 20px; border-radius: var(--r-lg); }
+  .roi-result::after { width: 150px; height: 150px; right: -40px; top: -40px; }
+  .roi-result .rk-lbl { margin-bottom: 5px; }
+  .roi-result .rk-big { font-size: 44px; }
+  .roi-result .rk-big small { font-size: 15px; margin-left: 5px; }
+  .roi-result .rk-sub { font-size: 12.5px; margin-top: 7px; }
+  .roi-result .rk-split { margin-top: 16px; padding-top: 14px; gap: 12px; }
+  .roi-result .rk-split .num { font-size: 20px; }
+  .roi-result .rk-split .cap { font-size: 11px; margin-top: 3px; }
+
+  .roi-controls { gap: 16px; }
+  .roi-control .top { margin-bottom: 9px; gap: 12px; align-items: flex-start; }
+  .roi-control label { font-size: 13px; line-height: 1.3; }
+  .roi-control .val { font-size: 15px; white-space: nowrap; }
+  .roi-range { height: 7px; }
+  .roi-control .scale { display: none; }
+  .roi-rate input { width: 56px; padding: 4px 7px; }
+  .roi-note { font-size: 11.5px; margin-top: 16px; }
+
+  /* Client portal dashboard — fit the phone */
+  .dash, .dash *, .roi-grid *, .temp-card * { min-width: 0; }
+  .dash-body { padding: 16px; }
+  .dash .winbar { gap: 9px; padding: 11px 13px; }
+  .dash .urlbar { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 10.5px; }
+  .dash .winbar .upd { display: none; }
+  .kpis { grid-template-columns: repeat(2,1fr); gap: 9px; }
+  .kpi .k-val { font-size: 21px; }
+  .dash-row { flex-wrap: wrap; gap: 10px; }
+  .check, .checks .ch-head { padding-inline: 12px; }
+
+  /* Steps: tighten */
+  .step { padding: 15px 16px; gap: 13px; }
+  .map-panel { padding: 18px; }
+
+  /* Pricing → swipeable carousel: one card per screen, peek of the next, dots below */
+  .price-grid {
+    display: flex;
+    position: relative;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    margin-inline: calc(-1 * var(--pad));
+    padding: 6px var(--pad) 4px;
+    scroll-padding-inline-start: var(--pad);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .price-grid::-webkit-scrollbar { display: none; }
+  .price-card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+    padding: 28px 24px;
+  }
+  .price-card:hover { transform: none; }
+  .price-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+  .price-dots button {
+    width: 8px; height: 8px; border-radius: 50%; padding: 0; border: 0; cursor: pointer;
+    background: var(--line); transition: width .25s ease, background .25s ease, border-radius .25s ease;
+  }
+  .price-dots button.on { width: 24px; border-radius: 5px; background: var(--green-500); }
+}
+
+/* ---- Narrow phones: drop the dashboard time column so rows stay legible ---- */
+@media (max-width: 430px) {
+  .checks .ch-head, .check { grid-template-columns: 1.4fr auto; }
+  .check .tm, .checks .ch-head span:nth-child(2) { display: none; }
+  .hero-trust .item { font-size: 13px; }
+  .h-display { font-size: clamp(30px, 9vw, 40px); }
 }
 
 /* ============================================================
