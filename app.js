@@ -408,3 +408,159 @@ function buildRouteSVG(prefix, opts) {
     if (reopen) reopen.onclick = function(ev){ ev.preventDefault(); openCalendly(prefill); };
   });
 })();
+
+/* ---------- Auth modal ---------- */
+(function initAuth(){
+  var modal = document.getElementById('authModal');
+  if (!modal) return;
+
+  var tabs = document.getElementById('authTabs');
+  var sso = document.getElementById('authSso');
+  var sw = document.getElementById('authSwitch');
+  var titleEl = document.getElementById('authTitle');
+  var subEl = document.getElementById('authSub');
+
+  var panels = {
+    signin: document.getElementById('formSignin'),
+    signup: document.getElementById('formSignup'),
+    reset:  document.getElementById('formReset'),
+    loading:document.getElementById('authLoading'),
+    done:   document.getElementById('authDone')
+  };
+
+  var COPY = {
+    signin: { title: 'Welcome back', sub: 'Sign in to your RouteLogs portal.' },
+    signup: { title: 'Create your account', sub: 'Start running specimen logistics in one place.' },
+    reset:  { title: 'Reset your password', sub: "Enter your email and we'll send a reset link." }
+  };
+
+  function showPanel(name){
+    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== name); });
+  }
+  function setChrome(visible){
+    tabs.style.display = visible ? '' : 'none';
+    sso.style.display = visible ? '' : 'none';
+    sw.style.display = visible ? '' : 'none';
+  }
+  function setTab(mode){
+    tabs.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.dataset.mode === mode); });
+  }
+
+  function setMode(mode){
+    titleEl.style.display = ''; subEl.style.display = '';
+    if (mode === 'signin' || mode === 'signup'){
+      showPanel(mode);
+      setChrome(true);
+      setTab(mode);
+      sw.innerHTML = mode === 'signin'
+        ? 'New to RouteLogs? <a href="#signup" data-goto="signup">Create an account</a>'
+        : 'Already have an account? <a href="#signin" data-goto="signin">Sign in</a>';
+    } else if (mode === 'reset'){
+      showPanel('reset');
+      setChrome(false);
+    }
+    if (COPY[mode]){ titleEl.textContent = COPY[mode].title; subEl.textContent = COPY[mode].sub; }
+    var firstInput = panels[mode] && panels[mode].querySelector('input');
+    if (firstInput) setTimeout(function(){ firstInput.focus(); }, 60);
+  }
+
+  function open(mode){
+    setMode(mode || 'signin');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(function(){ setMode('signin'); }, 280);
+  }
+
+  document.querySelectorAll('[data-login]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.preventDefault(); open('signin'); });
+  });
+  tabs.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){ setMode(b.dataset.mode); });
+  });
+  modal.addEventListener('click', function(e){
+    var g = e.target.closest('[data-goto]');
+    if (g){ e.preventDefault(); setMode(g.getAttribute('data-goto')); }
+  });
+  document.getElementById('authClose').addEventListener('click', close);
+  modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+  document.getElementById('authDoneBtn').addEventListener('click', close);
+
+  modal.querySelectorAll('.auth-peek').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var inp = document.getElementById(btn.dataset.peek);
+      var show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      btn.classList.toggle('off', !show);
+      btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+  });
+
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function field(id){ var input = document.getElementById(id); return { input: input, wrap: input.closest('.field') }; }
+  function check(f, ok){ f.wrap.classList.toggle('invalid', !ok); return ok; }
+
+  function wireForm(form, specs, onValid){
+    specs.forEach(function(s){
+      s.input.addEventListener('input', function(){ if (s.wrap.classList.contains('invalid')) check(s, s.test(s.input.value)); });
+    });
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var allOk = true, firstBad = null;
+      specs.forEach(function(s){
+        var ok = check(s, s.test(s.input.value));
+        if (!ok && !firstBad) firstBad = s.input;
+        allOk = allOk && ok;
+      });
+      if (!allOk){ if (firstBad) firstBad.focus(); return; }
+      onValid();
+    });
+  }
+
+  function runLoader(doneTitle, doneMsg, loadingText){
+    panels.loading.querySelector('p').textContent = loadingText || 'Signing you in…';
+    showPanel('loading'); setChrome(false);
+    titleEl.textContent = 'One moment'; subEl.textContent = 'Securely connecting to your workspace.';
+    setTimeout(function(){
+      document.getElementById('authDoneTitle').textContent = doneTitle;
+      document.getElementById('authDoneMsg').textContent = doneMsg;
+      showPanel('done');
+      titleEl.style.display = 'none'; subEl.style.display = 'none';
+    }, 1200);
+  }
+
+  var siE = field('si-email'), siP = field('si-pass');
+  wireForm(panels.signin, [
+    { input: siE.input, wrap: siE.wrap, test: function(v){ return emailRe.test(v.trim()); } },
+    { input: siP.input, wrap: siP.wrap, test: function(v){ return v.length >= 1; } }
+  ], function(){
+    runLoader('Almost there', "We're rolling portal access out to pilot partners. We've noted your email and will let you know the moment your workspace is live.");
+  });
+
+  var suN = field('su-name'), suE = field('su-email'), suP = field('su-pass');
+  wireForm(panels.signup, [
+    { input: suN.input, wrap: suN.wrap, test: function(v){ return v.trim().length >= 2; } },
+    { input: suE.input, wrap: suE.wrap, test: function(v){ return emailRe.test(v.trim()); } },
+    { input: suP.input, wrap: suP.wrap, test: function(v){ return v.length >= 8; } }
+  ], function(){
+    runLoader('Account requested', "Thanks for signing up. We're onboarding founding partners in waves — we'll email you to activate your workspace.", 'Creating your account…');
+  });
+
+  var rsE = field('rs-email');
+  wireForm(panels.reset, [
+    { input: rsE.input, wrap: rsE.wrap, test: function(v){ return emailRe.test(v.trim()); } }
+  ], function(){
+    runLoader('Check your inbox', "If an account exists for that email, we've sent a link to reset your password.", 'Sending reset link…');
+  });
+
+  document.getElementById('ssoBtn').addEventListener('click', function(){
+    runLoader('Almost there', "We're rolling portal access out to pilot partners. We'll email you the moment your Google workspace access is live.", 'Connecting with Google…');
+  });
+  if (location.hash === '#login') { open('signin'); history.replaceState(null, '', location.pathname + location.search); }
+})();
