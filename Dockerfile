@@ -13,7 +13,7 @@ ENV SITE_URL=$SITE_URL
 RUN node build.mjs
 
 # ---------- serve stage: Caddy serving the static /dist ----------
-FROM caddy:2-alpine@sha256:77c07d5ebfa5be9fd6c820d2094ae662c9e7eeb9bf98346b7f639900263ee2a2
+FROM caddy:2-alpine@sha256:5f5c8640aae01df9654968d946d8f1a56c497f1dd5c5cda4cf95ab7c14d58648
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY --from=build /app/dist /srv
 # Run as a non-root user with writable Caddy state dirs (defense in depth).
